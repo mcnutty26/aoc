@@ -6,9 +6,7 @@ def reacts(a,b):
 
 def react(polymer):
     oldpolymer = []
-    newpolymer = []
-    for letter in polymer:
-        newpolymer.append(letter)
+    newpolymer = list(polymer)
     done = False
     while not done:
         i = 0
@@ -23,10 +21,7 @@ def react(polymer):
                 newpolymer.append(oldpolymer[i])
                 i += 1
         newpolymer.append(oldpolymer[i])
-        returnstr = ""
-        for item in newpolymer:
-            returnstr += item
-    return returnstr
+    return list(newpolymer)
 
 reduced = react(raw)
 results = dict()
