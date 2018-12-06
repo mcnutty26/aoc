@@ -4,7 +4,7 @@ def matches(a,b):
     counter = 0
     diff = 0
     for letter in a:
-        if a[counter] is not b[counter]:
+        if a[counter] != b[counter]:
             diff += 1
         counter+= 1
     return diff
@@ -12,7 +12,7 @@ def matches(a,b):
 done = False
 for value in raw:
     for value_ in raw:
-        if value is not value_ and not done:
+        if value != value_ and not done:
             if matches(value,value_) is 1:
                 print(value,value_)
                 done = True

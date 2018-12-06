@@ -2,7 +2,7 @@ f = open('5.txt', 'r')
 raw = f.readline().strip('\n')
 
 def reacts(a,b):
-    return (ord(a.lower()) is  ord(b.lower())) and (a.isupper() is not b.isupper())
+    return (a.lower() == b.lower()) and (a.isupper() != b.isupper())
 
 oldpolymer = []
 newpolymer = list(raw)

@@ -35,7 +35,7 @@ for claim in claims:
         while jcount < claim[4]:
             ipos = claim[1] + icount
             jpos = claim[2] + jcount
-            if i_[ipos][jpos] is not 1:
+            if i_[ipos][jpos] == not 1:
                 intact = False
             jcount += 1
         icount += 1

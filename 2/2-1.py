@@ -12,10 +12,10 @@ for value in raw:
     for letter in value:
         freq[letter] += 1
     for key in freq:
-        if freq[key] is 3 and isthree is False:
+        if freq[key] == 3 and isthree == False:
             three += 1
             isthree = True
-        if freq[key] is 2 and istwo is False:
+        if freq[key] == 2 and istwo == False:
             two += 1
             istwo = True
 

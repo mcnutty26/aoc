@@ -2,7 +2,7 @@ f = open('5.txt', 'r')
 raw = f.readline().strip('\n')
 
 def reacts(a,b):
-    return (ord(a.lower()) is  ord(b.lower())) and (a.isupper() is not b.isupper())
+    return (a.lower() == b.lower()) and (a.isupper() != b.isupper())
 
 def react(polymer):
     oldpolymer = []
@@ -30,7 +30,7 @@ smallest = len(reduced)
 for letter in "abcdefghijklmnopqrstuvwxyz":
     temp = ""
     for poly in reduced:
-        if ord(poly.lower()) is not ord(letter):
+        if poly.lower() != letter:
             temp += poly
     if len(react(temp)) < smallest:
         smallest = len(react(temp))

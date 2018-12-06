@@ -16,9 +16,9 @@ max_sleep = 157
 sleep[157] = 0
 
 for ob in obs:
-    if ob[1] is -1:
+    if ob[1] == -1:
         start = ob[0]
-    elif ob[1] is -2:
+    elif ob[1] == -2:
         guards[gid].append((start.minute,ob[0].minute))
         sleep[gid] += (ob[0]-start).total_seconds()
         if sleep[gid] > sleep[max_sleep]:

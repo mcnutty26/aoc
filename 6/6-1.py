@@ -17,8 +17,8 @@ size = defaultdict(int)
 for x in range(xmin, xmax+1):
     for y in range(ymin, ymax+1):
         dists = sorted([(abs(x-a)+abs(y-b)),i] for i,a,b in points)
-        if dists[0][0] is not dists[1][0]:
+        if dists[0][0] != dists[1][0]:
             size[dists[0][1]] += 1
-        if x is xmin or x is xmax or y is ymin or (y == ymax): #wth doesn't this work for "y is ymax"?!
+        if x == xmin or x == xmax or y == ymin or y == ymax:
             inf.add(dists[0][1])
 print(max(b for a, b in size.items() if a not in inf))
