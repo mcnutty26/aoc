@@ -9,10 +9,9 @@ with open('7.csv', 'r') as csvfile:
     for step in r:
         fsteps[step[0]].append(step[1])
         rsteps[step[1]].append(step[0])
-node = 'A'
+node = fsteps.keys()[0]
 while len(rsteps[node]) > 0:
-    if len(rsteps[node]) > 0:
-        node = rsteps[node][0]
+    node = rsteps[node][0]
 stack = list(l for l in string.ascii_uppercase if l in fsteps or l in rsteps)
 done = []
 workers = dict({1:[None,0],2:[None,0],3:[None,0],4:[None,0],5:[None,0]})
