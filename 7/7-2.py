@@ -35,4 +35,4 @@ while len(stack):
                         stack.remove(x)
                         break
     time = min(x[1] for _,x in workers.items() if x[0] is not None)
-print(max(x[1] for _,x in workers.items() if x[0] is not None))
+print(time)
