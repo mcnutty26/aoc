@@ -33,5 +33,5 @@ while len(stack):
                         workers[worker] = [x,time + ord(x) -4]
                         stack.remove(x)
                         break
-    time = min(x[1] for _,x in workers.items() if x[0] is not None)
+    time = min(x[1] for x in workers.values() if x[0] is not None)
 print(time)
