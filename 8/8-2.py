@@ -11,15 +11,13 @@ r.reverse()
 def process(data):
     n = node(int(data.pop()), [], int(data.pop()), [], 0)
     while n.num_children > 0:
-        c = process(data)
-        n.children.append(c)
+        n.children.append(process(data))
         n.num_children -= 1
     while n.num_meta > 0:
-        m = int(data.pop())
-        n.meta.append(m)
+        n.meta.append(int(data.pop()))
         n.num_meta -= 1
-        if m <= len(n.children):
-            n.value += n.children[m-1].value
+        if n.meta[-1] <= len(n.children):
+            n.value += n.children[n.meta[-1]-1].value
     if len(n.children) == 0:
         n.value = sum(n.meta)
     return n

@@ -15,9 +15,8 @@ def process(data):
         n.children.append(process(data))
         n.num_children -= 1
     while n.num_meta > 0:
-        val = int(data.pop())
-        n.meta.append(val)
-        meta_total += val
+        n.meta.append(int(data.pop()))
+        meta_total += n.meta[-1]
         n.num_meta -= 1
     return n
 process(r)
