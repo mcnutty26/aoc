@@ -10,13 +10,10 @@ def process(data):
     global meta_total
     control = [int(data.pop()), int(data.pop())]
     n = node()
-    while control[0] > 0:
-        n.children.append(process(data))
-        control[0] -= 1
-    while control[1] > 0:
+    for c in range(control[0]): n.children.append(process(data))
+    for m in range(control[1]):
         n.meta.append(int(data.pop()))
         meta_total += n.meta[-1]
-        control[1] -= 1
     return n
 process(r)
 print(meta_total)
