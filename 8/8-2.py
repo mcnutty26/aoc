@@ -3,8 +3,7 @@ class node:
         self.children = []
         self.meta = []
         self.value = 0
-with open('8.txt', 'r') as txtfile:
-    r = txtfile.readline().strip('\n').split(' ')
+with open('8.txt', 'r') as txtfile: r = txtfile.readline().strip('\n').split(' ')
 r.reverse()
 def process(data):
     control = [int(data.pop()), int(data.pop())]

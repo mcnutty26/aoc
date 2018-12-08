@@ -2,8 +2,7 @@ class node:
     def __init__(self):
         self.children = []
         self.meta = []
-with open('8.txt', 'r') as txtfile:
-    r = txtfile.readline().strip('\n').split(' ')
+with open('8.txt', 'r') as txtfile: r = txtfile.readline().strip('\n').split(' ')
 r.reverse()
 meta_total = 0
 def process(data):
