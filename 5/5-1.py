@@ -1,9 +1,6 @@
-f = open('5.txt', 'r')
-raw = f.readline().strip('\n')
-
+with open('5.txt', 'r') as r: raw = r.readline().strip('\n')
 def reacts(a,b):
     return (a.lower() == b.lower()) and (a.isupper() != b.isupper())
-
 oldpolymer = []
 newpolymer = list(raw)
 done = False
@@ -20,5 +17,4 @@ while not done:
             newpolymer.append(oldpolymer[i])
             i += 1
     newpolymer.append(oldpolymer[i])
-
 print(len(newpolymer))

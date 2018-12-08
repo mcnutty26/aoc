@@ -1,9 +1,7 @@
-f = open('5.txt', 'r')
-raw = f.readline().strip('\n')
-
+import string
+with open('5.txt', 'r') as r: raw = r.readline().strip('\n')
 def reacts(a,b):
     return (a.lower() == b.lower()) and (a.isupper() != b.isupper())
-
 def react(polymer):
     oldpolymer = []
     newpolymer = list(polymer)
@@ -22,16 +20,14 @@ def react(polymer):
                 i += 1
         newpolymer.append(oldpolymer[i])
     return list(newpolymer)
-
 reduced = react(raw)
 results = dict()
 temp = ""
 smallest = len(reduced)
-for letter in "abcdefghijklmnopqrstuvwxyz":
+for letter in string.ascii_lowercase:
     temp = ""
     for poly in reduced:
         if poly.lower() != letter:
             temp += poly
-    if len(react(temp)) < smallest:
-        smallest = len(react(temp))
+    if len(react(temp)) < smallest: smallest = len(react(temp))
 print(smallest)
