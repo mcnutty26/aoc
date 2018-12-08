@@ -1,6 +1,5 @@
 import csv
 import string
-from datetime import datetime
 from collections import defaultdict
 fsteps = defaultdict(list)
 rsteps = defaultdict(list)
