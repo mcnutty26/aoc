@@ -1,21 +1,20 @@
 class node:
-    def __init__(self, num_children, children, num_meta, meta, value):
-        self.num_children = num_children
-        self.children = children
-        self.num_meta = num_meta
-        self.meta = meta
-        self.value = value
+    def __init__(self):
+        self.children = []
+        self.meta = []
+        self.value = 0
 with open('8.txt', 'r') as txtfile:
     r = txtfile.readline().strip('\n').split(' ')
 r.reverse()
 def process(data):
-    n = node(int(data.pop()), [], int(data.pop()), [], 0)
-    while n.num_children > 0:
+    control = [int(data.pop()), int(data.pop())]
+    n = node()
+    while control[0] > 0:
         n.children.append(process(data))
-        n.num_children -= 1
-    while n.num_meta > 0:
+        control[0] -= 1
+    while control[1] > 0:
         n.meta.append(int(data.pop()))
-        n.num_meta -= 1
+        control[1] -= 1
         if n.meta[-1] <= len(n.children):
             n.value += n.children[n.meta[-1]-1].value
     if len(n.children) == 0:
