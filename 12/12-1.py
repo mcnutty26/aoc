@@ -9,9 +9,7 @@ with open("12.txt", 'r') as f:
         patterns[temp[0]] = temp[1]
 for generation in range(20):
     s_ = "." * len(s)
-    for i in range(len(s) - 4):
-        for p in patterns:
-            if s[i:i+5] == p: s_ = s_[:i+2] + patterns[p] + s_[i+3:]
+    for i in range(len(s) - 4): s_ = f"{s_[:i+2]}{patterns[s[i:i+5]]}{s_[i+3:]}"
     s = s_
 score = 0
 for plant in range(len(s)):
