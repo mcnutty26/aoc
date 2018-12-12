@@ -15,4 +15,3 @@ score = 0
 for plant in range(len(s)):
     if s[plant] == '#': score += plant + xstart
 print(score)
-

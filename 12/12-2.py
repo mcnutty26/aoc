@@ -17,4 +17,3 @@ for generation in range(200):
         if s[plant] == '#': score += plant + xstart
     scores.append(score)
 print(((50000000000 - 200) * (scores[-1]-scores[-2])) + scores[-1])
-
