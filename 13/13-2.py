@@ -35,7 +35,6 @@ for y in range(len(g)):
 alive = sum(1 for cart in c if cart[4] == 0)
 
 while alive > 1:
-    alive = sum(1 for cart in c if cart[4] == 0)
     for cart in c:
 
         if cart[4] == 1:
@@ -131,6 +130,7 @@ while alive > 1:
                     cart[4] = 1
 
     c.sort()
+    alive = sum(1 for cart in c if cart[4] == 0)
 
 print("=============================")
 for cart in c:

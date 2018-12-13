@@ -1,4 +1,6 @@
 import sys
+import os
+from time import sleep
 g = []
 c = []
 
@@ -33,13 +35,11 @@ for y in range(len(g)):
             g[y][x] = '|'
 crash = False
 
-while not crash:
+while True:
     for cart in c:
         for a in c:
             if a is not cart and a[0] == cart[0] and a[1] == cart[1]:
                     crash = True
-                    print(a[1], a[0])
-                    sys.exit(0)
 
         #UP, DOWN, LEFT, AND RIGHT
         if g[cart[0]][cart[1]] == '-':
@@ -125,8 +125,9 @@ while not crash:
 
     c.sort()
         
-
-    for y in range(len(g)):
+    os.system("clear")
+    #Change to print more or less of the grid, depending on the size of your terminal
+    for y in range(60):
         line = ""
         line += str(y)
         if y < 10:
@@ -139,9 +140,9 @@ while not crash:
                     iscart = True
                     if cart[2] == 0: line += "\033[91m^\033[0m"
                     elif cart[2] == 1: line += "\033[91mv\033[0m"
-                    elif cart[2] == 2: line += "\033[91m\033[0m<"
+                    elif cart[2] == 2: line += "\033[91m<\033[0m"
                     elif cart[2] == 3: line += "\033[91m>\033[0m"
             if not iscart:
                 line += g[y][x]
-    #    print(line)
-    #print("=============================")
+        print(line)
+    sleep(0.1)
