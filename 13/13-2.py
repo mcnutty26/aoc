@@ -20,31 +20,26 @@ with open("13.txt") as f:
 for y in range(len(g)):
     for x in range(len(g[y])):
         if g[y][x] == '<':
-            c.append([y, x, 2, 0])
+            c.append([y, x, 2, 0, 0])
             g[y][x] = '-'
         elif g[y][x] == '>':
-            c.append([y, x, 3, 0])
+            c.append([y, x, 3, 0, 0])
             g[y][x] = '-'
         elif g[y][x] == 'v':
-            c.append([y, x, 1, 0])
+            c.append([y, x, 1, 0, 0])
             g[y][x] = '|'
         elif g[y][x] == '^':
-            c.append([y, x, 0, 0])
+            c.append([y, x, 0, 0, 0])
             g[y][x] = '|'
-#print(c)
-crash = False
-i = 0
 
-while not crash:
-#while i < 109:
-    i += 1
+alive = sum(1 for cart in c if cart[4] == 0)
+
+while alive > 1:
+    alive = sum(1 for cart in c if cart[4] == 0)
     for cart in c:
 
-        for a in c:
-            if a is not cart and a[0] == cart[0] and a[1] == cart[1]:
-                    crash = True
-                    print(a[1], a[0])
-                    sys.exit(0)
+        if cart[4] == 1:
+            continue
 
         #UP, DOWN, LEFT, AND RIGHT
         if g[cart[0]][cart[1]] == '-':
@@ -127,26 +122,31 @@ while not crash:
         else: 
             print("TILE ERROR")
             sys.exit(1)
+        
+        for a in c:
+            if a is not cart and a[0] == cart[0] and a[1] == cart[1] and a[4] == 0:
+                    crash = True
+                    print("Crash", a[1], a[0])
+                    a[4] = 1
+                    cart[4] = 1
 
     c.sort()
-        
 
-    for y in range(len(g)):
-        line = ""
-        line += str(y)
-        if y < 10:
-            line += " "
-        line += " "
-        for x in range(len(g[y])):
-            iscart = False
-            for cart in c:
-                if cart[0] == y and cart[1] == x:
-                    iscart = True
-                    if cart[2] == 0: line += "\033[91m^\033[0m"
-                    elif cart[2] == 1: line += "\033[91mv\033[0m"
-                    elif cart[2] == 2: line += "\033[91m\033[0m<"
-                    elif cart[2] == 3: line += "\033[91m>\033[0m"
-            if not iscart:
-                line += g[y][x]
-    #    print(line)
-    #print("=============================")
+print("=============================")
+for cart in c:
+    if cart[4] == 0: print(cart[1], cart[0])
+#print("=============================")
+#for y in range(len(g)):
+#    line = ""
+#    for x in range(len(g[y])):
+#        iscart = False
+#        for cart in c:
+#            if cart[0] == y and cart[1] == x:
+#                iscart = True
+#                if cart[2] == 0: line += "^"
+#                elif cart[2] == 1: line += "v"
+#                elif cart[2] == 2: line += "<"
+#                elif cart[2] == 3: line += ">"
+#        if not iscart:
+#            line += g[y][x]
+#    print(line)
