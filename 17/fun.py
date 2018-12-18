@@ -107,7 +107,7 @@ while moved:
                     else: 
                         l += g[(y,x)]
                 else:
-                    l += '.'
+                    l += ' '
             display.append(l)
         os.system("clear")
         for line in display:
