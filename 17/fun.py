@@ -53,6 +53,8 @@ def settled(coord):
     if g.get(current, '.') != '#': return False
     return True
 
+rows, columns = os.popen('stty size', 'r').read().split()
+
 while moved:
 
     moved = False
@@ -94,18 +96,23 @@ while moved:
 
     if DEBUG:
         display = []
-        for y in range(0, ymax+1):
+        for y in range(0, int(rows)):
             l = ""
-            for x in range(xmin-1,xmax+2):
+            for x in range(int(502-int(columns)/2),int(498+int(columns)/2)):
                 if (y,x) in g:
-                    l += g[(y,x)]
+                    if g[y,x] == 'w':
+                        l += f"\033[36m|\033[0m"
+                    elif g[y,x] == 'W':
+                        l += f"\033[34m~\033[0m"
+                    else: 
+                        l += g[(y,x)]
                 else:
                     l += '.'
             display.append(l)
         os.system("clear")
         for line in display:
             print(line)
-        time.sleep(0.2)
+        time.sleep(0.01)
 
 counterw = 0
 counterW = 0
