@@ -1,13 +1,16 @@
-ELF_POWER = 33
-STARTING_ELVES = 0
-
 import sys
 from pathfinding import get_adjacent, get_step
+
+#set ELF_POWER to 3 for part one
+ELF_POWER = 33
+STARTING_ELVES = 0
+DEBUG = False
+
 g = []
 c = []
-DEBUG = False
-# y, x, (E)lf/(G)oblin, hp
 
+#just to make accessing data about elves and goblins easier
+#and less error prone
 class creature:
     def __init__(self, y, x, t):
         self.y = y
@@ -15,6 +18,7 @@ class creature:
         self.type = t
         self.hp = 200
         self.alive = True
+    #for reading order we need to sort the list, requiring < and > relations
     def __lt__(self, other):
         if self.y < other.y: return True
         if self.y == other.y and self.x < other.x: return True
@@ -60,11 +64,14 @@ if DEBUG:
 i = 0
 while True:
 
+    #print out how many units need to die before the combat ends (gives you something to watch while it runs)
     if i % 10 == 0: print(min(sum(1 for z in c if z.type=='E' and z.alive), sum(1 for z in c if z.type=='G' and z.alive)))
 
+    #sort creatures into reading order
     c.sort()
     for thing in c:
 
+        #dead things can't move or fight
         if not thing.alive: continue
 
         #check exit condition
@@ -101,6 +108,8 @@ while True:
                     print(thing.y, thing.x, thing.type)
                     sys.exit(1)
     i += 1
+    
+    #print the battlefield after each step
     if DEBUG:
         print("  0123456")
         for y in range(len(g)):
