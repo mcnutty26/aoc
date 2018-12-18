@@ -96,7 +96,7 @@ while moved:
 
     if DEBUG:
         display = []
-        for y in range(0, int(rows)):
+        for y in range(0, int(rows)-2):
             l = ""
             for x in range(int(502-int(columns)/2),int(498+int(columns)/2)):
                 if (y,x) in g:

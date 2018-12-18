@@ -34,6 +34,7 @@ for y in range(len(g)):
             c.append([y, x, 0, 0])
             g[y][x] = '|'
 crash = False
+rows, columns = os.popen('stty size', 'r').read().split()
 
 while True:
     for cart in c:
@@ -125,15 +126,10 @@ while True:
 
     c.sort()
         
-    os.system("clear")
-    #Change to print more or less of the grid, depending on the size of your terminal
-    for y in range(60):
+    display = []
+    for y in range(min(int(rows)-2, len(g))):
         line = ""
-        line += str(y)
-        if y < 10:
-            line += " "
-        line += " "
-        for x in range(len(g[y])):
+        for x in range(min(int(columns),len(g[y]))):
             iscart = False
             for cart in c:
                 if cart[0] == y and cart[1] == x:
@@ -144,5 +140,8 @@ while True:
                     elif cart[2] == 3: line += "\033[91m>\033[0m"
             if not iscart:
                 line += g[y][x]
-        print(line)
-    sleep(0.1)
+        display.append(line)
+    os.system("clear")
+    for l in display:
+        print(l)
+    sleep(0.01)
