@@ -43,4 +43,4 @@ while i < 1000:
         if opcode.__name__ == program[ip][0]: opcode(int(program[ip][1]), int(program[ip][2]), int(program[ip][3]))
     ip = r[ip_r]
     ip += 1
-print(sum(set(reduce(list.__add__, ([i, r[2]//i] for i in range(1, int(r[2]**0.5) + 1) if r[2] % i == 0)))))
+print(sum(set(reduce(list.__add__, ([i, max(r)//i] for i in range(1, int(max(r)**0.5) + 1) if max(r) % i == 0)))))
