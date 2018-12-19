@@ -1,0 +1,5 @@
+#! /bin/bash
+
+python3 elfcc.py $1 > temp
+gcc -O3 -o $2 temp
+rm temp
