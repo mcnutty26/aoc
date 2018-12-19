@@ -1,5 +1,11 @@
 #! /bin/bash
 
-python3 elfcc.py $1 > temp
-gcc -O3 -o $2 temp
-rm temp
+if [ $# -eq 0 ]
+  then
+    echo "elfcc takes 2 arguments - the input elf file name, and the output file name"
+	exit 1
+fi
+
+python3 elfcc.py $1 > temp.c
+gcc -O3 -o $2 temp.c
+rm temp.c

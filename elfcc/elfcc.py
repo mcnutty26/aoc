@@ -30,9 +30,9 @@ int seti(int a, int b){return a;}
 int gtir(int a, int b){return a > b;}
 int gtri(int a, int b){return a > b;}
 int gtrr(int a, int b){return a > b;}
-int eqir(int a, int b){return a == b;
-int eqri(int a, int b){return a == b;
-int eqrr(int a, int b){return a == b;
+int eqir(int a, int b){return a == b;}
+int eqri(int a, int b){return a == b;}
+int eqrr(int a, int b){return a == b;}
 
 int main()
 {
@@ -68,7 +68,6 @@ loop = f"""
         }}
         ip = r[{ip_r}];
         ip++;
-//        printf("%d, %d, %d, %d, %d, %d\\n",r[0], r[1], r[2], r[3], r[4], r[5]);
     }} while (ip > 0 && ip < len);"""
 
 ops = ["addr", "addi", "mulr", "muli", "banr", "bani", "borr", "bori", "setr", "seti", "gtir", "gtri", "gtrr", "eqir", "eqri", "eqrr"]
