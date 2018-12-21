@@ -159,19 +159,21 @@ int main()
     ops[30].a = 5;
     ops[30].b = 3;
     ops[30].c = 1;
-	int lr4 = 0;
-	std::unordered_set<int> r4s;
+
+    int lr4 = 0;
+    std::unordered_set<int> r4s;
+
     do {
 
-		if (ip == 28) {
-			if (r4s.count(r[4])) {
-				printf("%d", lr4);
-				exit(0);
-			} else {
-				r4s.insert(r[4]);
-				lr4 = r[4];
-			}
-		}
+        if (ip == 28) {
+            if (r4s.count(r[4])) {
+                printf("%d", lr4);
+                exit(0);
+            } else {
+                r4s.insert(r[4]);
+                lr4 = r[4];
+            }
+        }
 
         r[1] = ip;
         if (codes[ip]==0||codes[ip]==2||codes[ip]==4||codes[ip]==6||codes[ip]==8||codes[ip]==12||codes[ip]==15){

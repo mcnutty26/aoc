@@ -35,28 +35,13 @@ with open("21.txt") as f:
 ip = 0
 ip_r = int(program.pop(0)[1])
 options = set()
-#i = 0
-lr4 = 0
-#heat = defaultdict(int)
 while True:
-#    heat[ip] += 1
     if ip >= len(program): break
-    #i += 1
     if ip == 28:
-        if r[4] not in options:
-            options.add(r[4])
-            lr4 = r[4]
-            print(len(options))
-        else:
-            print(lr4)
-            break
-        #print(program[ip], r)
+        print(r[4])
+        break
     r[ip_r] = ip
     for opcode in opcodes:
         if opcode.__name__ == program[ip][0]: opcode(int(program[ip][1]), int(program[ip][2]), int(program[ip][3]))
     ip = r[ip_r]
     ip += 1
-#for item in heat:
- #   print(item, heat[item])
-#print(options)
-#print(len(options))
