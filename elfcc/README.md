@@ -1,8 +1,15 @@
 # elfcc - the elfcode compiler
 
-## usage
+## Usage
 
-```./elfcode <infile> <outfile>```
+```./elfcode -i <infile> -o <outfile> [opts]```
 
-_much_ faster than running elfcode in a virtual machine!
+Where opts is one or more of:
+* ```O0 | O1 | O2 | O3``` the level of compiler optimisation
+* ```p``` to embed profiling code into the program, which prints out how often each line was executed upon termination
+* ```v | V``` prints the elfcc version
+* ```h``` prints usage information
+
+## Benefits
+_Much_ faster than running elfcode in a virtual machine!
 
