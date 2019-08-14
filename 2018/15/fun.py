@@ -95,20 +95,30 @@ while True:
     #print the battlefield after each step
     if DEBUG:
         s = []
+        new_e = []
+        new_g = []
+        for thing in c:
+            if thing.type == 'E':
+                new_e.append(thing)
+            elif thing.type == 'G':
+                new_g.append(thing)
         for y in range(len(g)):
             l = ""
             for x in range(len(g[y])):
                 ischar = False
                 for thing in c:
                     if thing.y == y and thing.x == x and thing.alive:
-                        if thing.type == 'E':
-                            l += f"\033[91m{thing.type}\033[0m"
-                        else:
-                            l += f"\033[91m{thing.type}\033[0m"
+                        l += f"\033[91m{thing.type}\033[0m"
                         ischar = True
                 if not ischar:
                     l += g[y][x]
-            s.append(l)
+            if len(new_e) > y:
+                l = l.rstrip() + f"\tE{y}:\t{new_e[y].hp} / 200"
+            else:
+                l = l.rstrip() + "\t\t\t"
+            if len(new_g) > y:
+                l += f"\tG{y}:\t{new_g[y].hp} / 200"
+            s.append(l.rstrip())
         os.system("clear")
         for line in s:
             print(line)
