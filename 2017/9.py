@@ -1,9 +1,8 @@
 import sys
-from collections import defaultdict
 inp = []
 with open(sys.argv[1], "r") as f:
     for character in f.readline().rstrip():
-            inp.append(character)
+        inp.append(character)
 class node:
     def __init__(self, content=None, children=[]):
         self.content = content
