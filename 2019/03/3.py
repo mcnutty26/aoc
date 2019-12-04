@@ -27,10 +27,10 @@ for wire in wires:
             if move[0] == "L":
                 x -= 1
             d += 1
-            lines[-1].add((x,y))
-            if (x,y) not in distances:
-                distances[(x,y)] = 0
-            distances[(x,y)] += d
+            lines[-1].add((x, y))
+            if (x, y) not in distances:
+                distances[(x, y)] = 0
+            distances[(x, y)] += d
 
 lowest = float('inf')
 for intersect in lines[0].intersection(lines[1]):
