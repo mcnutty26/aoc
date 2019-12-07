@@ -13,5 +13,5 @@ G = nx.Graph()
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
 
-print(sum([len(nx.shortest_path(G, node, 'COM'))-1 for node in nodes]))
-print(len(nx.shortest_path(G, 'YOU', 'SAN'))-3)
+print(sum([len(nx.shortest_path(G, node, 'COM')) - 1 for node in nodes]))
+print(len(nx.shortest_path(G, 'YOU', 'SAN')) - 3)
