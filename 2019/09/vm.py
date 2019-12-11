@@ -1,3 +1,5 @@
+import sys
+
 class intcode_vm:
     program = []
     input_queue = []
@@ -21,15 +23,24 @@ class intcode_vm:
             return value
         elif mode == 2:
             return self.mem(self.rel_offset + value)
+        else:
+            print(f">>> ERROR: Illegal mode {mode} when accessing program at IP {self.ip} <<<")
+            sys.exit(1)
 
     def set_data(self, location, value, mode):
         if mode == 0:
             self.mem(location, value)
         elif mode == 2:
             self.mem(self.rel_offset + location, value)
+        else:
+            print(f">>> ERROR: Illegal mode {mode} when writing program at IP {self.ip} <<<")
+            sys.exit(1)
 
     def mem(self, location, value=None):
-        if location >= len(self.program):
+        if location < 0:
+            print(f">>> ERROR: Illegal address {location} at IP {self.ip} <<<")
+            sys.exit(1)
+        elif location >= len(self.program):
             while location >= len(self.program):
                 self.program.append(0)
         if value == None:
@@ -83,6 +94,10 @@ class intcode_vm:
             mode_2 = 0
             mode_3 = 0
 
+            if ins == 0 or ins > 99999:
+                print(f">>> ERROR: Illegal instruction {ins} at IP {self.ip} <<<")
+                sys.exit(1)
+
             if ins < 99:
                 opcode = ins
             else:
@@ -123,7 +138,7 @@ class intcode_vm:
                 self.ofs(self.get_data(mode_1, self.mem(self.ip + 1)))
                 self.ip += 2
             else:
-                print("FAULT", opcode)
-                return False
+                print(f">>> ERROR: Illegal opcode {opcode} at IP {self.ip} <<<")
+                sys.exit(1)
         self.halted = True
         return self.output_queue
