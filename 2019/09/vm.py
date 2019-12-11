@@ -12,6 +12,7 @@ class intcode_vm:
         self.output_queue = []
         self.halted = False
         self.rel_offset = 0
+        print(">>> Booting nuttyIntcode Interpreter v1.3 <<<")
 
     def get_data(self, mode, value):
         if mode == 0:
