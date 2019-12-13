@@ -1,7 +1,7 @@
 import sys
 
 class intcode_vm:
-    program = []
+    program = dict()
     input_queue = []
     output_queue = []
     ip = 0
@@ -9,7 +9,8 @@ class intcode_vm:
     rel_offset = 0
 
     def __init__(self, program, input_queue):
-        self.program = program
+        for token in program:
+            self.program[len(self.program)] = token
         self.input_queue = input_queue
         self.output_queue = []
         self.halted = False
@@ -18,35 +19,23 @@ class intcode_vm:
 
     def get_data(self, mode, value):
         if mode == 0:
-            return self.mem(value)
+            return self.program.get(value, 0)
         elif mode == 1:
             return value
         elif mode == 2:
-            return self.mem(self.rel_offset + value)
+            return self.program.get(self.rel_offset + value, 0)
         else:
             print(f">>> ERROR: Illegal mode {mode} when accessing program at IP {self.ip} <<<")
             sys.exit(1)
 
     def set_data(self, location, value, mode):
         if mode == 0:
-            self.mem(location, value)
+            self.program[location] = value
         elif mode == 2:
-            self.mem(self.rel_offset + location, value)
+            self.program[self.rel_offset + location] = value
         else:
             print(f">>> ERROR: Illegal mode {mode} when writing program at IP {self.ip} <<<")
             sys.exit(1)
-
-    def mem(self, location, value=None):
-        if location < 0:
-            print(f">>> ERROR: Illegal address {location} at IP {self.ip} <<<")
-            sys.exit(1)
-        elif location >= len(self.program):
-            while location >= len(self.program):
-                self.program.append(0)
-        if value == None:
-            return self.program[location]
-        else:
-            self.program[location] = value
 
     def add(self, a, b, c, mode):
         self.set_data(c, a + b, mode)
@@ -89,8 +78,8 @@ class intcode_vm:
 
     def run(self):
         self.output_queue = []
-        while self.mem(self.ip) != 99:
-            ins = self.mem(self.ip)
+        while self.program.get(self.ip, 0) != 99:
+            ins = self.program.get(self.ip, 0)
             mode_1 = 0
             mode_2 = 0
             mode_3 = 0
@@ -112,31 +101,31 @@ class intcode_vm:
                 mode_3 = int(str(ins)[-5])
 
             if opcode == 1:
-                self.add(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)), self.mem(self.ip + 3), mode_3)
+                self.add(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)), self.program.get(self.ip + 3, 0), mode_3)
                 self.ip += 4
             elif opcode == 2:
-                self.mul(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)), self.mem(self.ip + 3), mode_3)
+                self.mul(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)), self.program.get(self.ip + 3, 0), mode_3)
                 self.ip += 4
             elif opcode == 3:
                 if len(self.input_queue) == 0:
                     return self.output_queue
-                self.io_in(self.mem(self.ip + 1), mode_1)
+                self.io_in(self.program.get(self.ip + 1, 0), mode_1)
                 self.ip += 2
             elif opcode == 4:
-                self.io_out(self.get_data(mode_1, self.mem(self.ip + 1)))
+                self.io_out(self.get_data(mode_1, self.program.get(self.ip + 1, 0)))
                 self.ip += 2
             elif opcode == 5:
-                self.jit(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)))
+                self.jit(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)))
             elif opcode == 6:
-                self.jif(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)))
+                self.jif(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)))
             elif opcode == 7:
-                self.lt(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)), self.mem(self.ip + 3), mode_3)
+                self.lt(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)), self.program.get(self.ip + 3, 0), mode_3)
                 self.ip += 4
             elif opcode == 8:
-                self.eq(self.get_data(mode_1, self.mem(self.ip + 1)), self.get_data(mode_2, self.mem(self.ip + 2)), self.mem(self.ip + 3), mode_3)
+                self.eq(self.get_data(mode_1, self.program.get(self.ip + 1, 0)), self.get_data(mode_2, self.program.get(self.ip + 2, 0)), self.program.get(self.ip + 3, 0), mode_3)
                 self.ip += 4
             elif opcode == 9:
-                self.ofs(self.get_data(mode_1, self.mem(self.ip + 1)))
+                self.ofs(self.get_data(mode_1, self.program.get(self.ip + 1, 0)))
                 self.ip += 2
             else:
                 print(f">>> ERROR: Illegal opcode {opcode} at IP {self.ip} <<<")
