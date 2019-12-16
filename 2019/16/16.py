@@ -56,7 +56,7 @@ def ffft(start, phases):
     new.reverse()
     return new
 
-#print(p_print(fft(signal, 100)[0:8]))
+print(p_print(fft(signal, 100)[0:8]))
 
 offset = p_print(signal[0:7])
 signal *= 5000
