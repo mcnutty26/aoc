@@ -9,7 +9,7 @@ grid = {}
 location = (0, 0)
 movement = []
 
-with open("input.csv", 'rt') as csvfile:
+with open("test3.csv", 'rt') as csvfile:
     r = csv.reader(csvfile, delimiter=',')
     for row in r:
         for token in row:
@@ -53,7 +53,6 @@ robot.run()
 while 2 not in grid.values():
     mapping()
 print(len(movement))
-
 
 # Part 2
 time = 0
