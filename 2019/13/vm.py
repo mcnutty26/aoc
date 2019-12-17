@@ -1,20 +1,16 @@
 import sys
 
 class intcode_vm:
-    program = dict()
-    input_queue = []
-    output_queue = []
-    ip = 0
-    halted = False
-    rel_offset = 0
 
     def __init__(self, program, input_queue):
+        self.program = dict()
         for token in program:
             self.program[len(self.program)] = token
         self.input_queue = input_queue
         self.output_queue = []
         self.halted = False
         self.rel_offset = 0
+        self.ip = 0
         print(">>> Booting nuttyIntcode Interpreter v1.4 <<<")
 
     def _get_data(self, mode, value):
