@@ -57,8 +57,9 @@ def ffft(start, phases):
     return new
 
 print(p_print(fft(signal, 100)[0:8]))
-
+length = len(signal)
 offset = p_print(signal[0:7])
-signal *= 5000
-offset -= len(signal)
+signal *= 10000
+signal = signal[offset - (offset % length):]
+offset -= offset - (offset % length)
 print(p_print(ffft(signal, 100)[offset:offset + 8]))
