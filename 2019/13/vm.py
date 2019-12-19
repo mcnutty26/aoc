@@ -2,7 +2,7 @@ import sys
 
 class intcode_vm:
 
-    def __init__(self, program, input_queue):
+    def __init__(self, program, input_queue, silent=False):
         self.program = dict()
         for token in program:
             self.program[len(self.program)] = token
@@ -11,7 +11,8 @@ class intcode_vm:
         self.halted = False
         self.rel_offset = 0
         self.ip = 0
-        print(">>> Booting nuttyIntcode Interpreter v1.4 <<<")
+        if not silent:
+            print(">>> Booting nuttyIntcode Interpreter v1.4 <<<")
 
     def _get_data(self, mode, value):
         if mode == 0:
