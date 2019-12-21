@@ -17,7 +17,7 @@ with open('input.txt', 'rt') as textfile:
         productions[product[1]] = reactants
         produced[product[1]] = int(product[0])
 
-def make(compound: str, quantity: int):
+def make(compound: str, quantity: int) -> int:
     ore = 0
     stack = [(compound, quantity)]
     extra = defaultdict(int)
@@ -65,4 +65,3 @@ while low <= high:
         low = guess + 1
 
 print(guess)
-

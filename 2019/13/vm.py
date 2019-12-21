@@ -2,7 +2,7 @@ import sys
 
 class intcode_vm:
 
-    def __init__(self, program, input_queue, silent=False):
+    def __init__(self, program: list, input_queue: list, silent=False) -> None:
         self.program = dict()
         for token in program:
             self.program[len(self.program)] = token
@@ -14,7 +14,7 @@ class intcode_vm:
         if not silent:
             print(">>> Booting nuttyIntcode Interpreter v1.4 <<<")
 
-    def _get_data(self, mode, value):
+    def _get_data(self, mode: int, value: int) -> int:
         if mode == 0:
             return self.program.get(value, 0)
         elif mode == 1:
@@ -25,7 +25,7 @@ class intcode_vm:
             print(f">>> ERROR: Illegal mode {mode} when accessing program at IP {self.ip} <<<")
             sys.exit(1)
 
-    def _set_data(self, location, value, mode):
+    def _set_data(self, location: int, value: int, mode: int) -> None:
         if mode == 0:
             self.program[location] = value
         elif mode == 2:
@@ -34,31 +34,31 @@ class intcode_vm:
             print(f">>> ERROR: Illegal mode {mode} when writing program at IP {self.ip} <<<")
             sys.exit(1)
 
-    def _jit(self, a, b):
+    def _jit(self, a: int, b: int) -> None:
         if a != 0:
             self.ip = b
         else:
             self.ip += 3
 
-    def _jif(self, a, b):
+    def _jif(self, a: int, b: int) -> None:
         if a == 0:
             self.ip = b
         else:
             self.ip += 3
 
-    def _lt(self, a, b, c, mode):
+    def _lt(self, a: int, b: int, c: int, mode: int) -> None:
         if a < b:
             self._set_data(c, 1, mode)
         else:
             self._set_data(c, 0, mode)
 
-    def _eq(self, a, b, c, mode):
+    def _eq(self, a: int, b: int, c: int, mode: int) -> None:
         if a == b:
             self._set_data(c, 1, mode)
         else:
             self._set_data(c, 0, mode)
 
-    def run(self):
+    def run(self) -> list:
         self.output_queue = []
         while self.program[self.ip] != 99:
 

@@ -1,5 +1,4 @@
 from pathfinding import astar
-import heapq
 
 maze = []
 portals = dict()
@@ -16,7 +15,7 @@ with open('input.txt', 'rt') as textfile:
             maze[-1].append(char)
 
 # Helper function to get the squares adjacent to the given square
-def neighbours(y, x):
+def neighbours(y: int, x: int) -> list:
     return [maze[y][x+1], maze[y][x-1], maze[y+1][x], maze[y-1][x]]
 
 # Search for portals in the grid

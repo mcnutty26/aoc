@@ -15,7 +15,7 @@ with open("test3.csv", 'rt') as csvfile:
         for token in row:
             program.append(int(token))
 
-def move(direction, backtracking=False):
+def move(direction: int, backtracking=False) -> None:
     global location
 
     # Feed the direction into the robot and see what we get back
@@ -34,7 +34,7 @@ def move(direction, backtracking=False):
         if not backtracking:
             movement.append(direction)
 
-def mapping():
+def mapping() -> None:
     moved = False
     for i in range(len(rels)):
         #explore new tiles if we can

@@ -9,13 +9,13 @@ with open('input.txt', 'rt') as textfile:
             signal.insert(0, line_i % 10)
             line_i //= 10
 
-def p_print(l):
+def p_print(l: list) -> int:
     output = ""
     for element in l:
         output += str(element)
     return int(output)
 
-def rel_base(n):
+def rel_base(n: int) -> list:
     if n < len(BASE_CACHE):
         return BASE_CACHE[n]
     output = []
@@ -25,7 +25,7 @@ def rel_base(n):
     BASE_CACHE.append(output)
     return output
 
-def rep_base(n, l):
+def rep_base(n: int, l: int) -> list:
     base = rel_base(n)
     output = []
     while len(output) < (l + 1):
@@ -33,7 +33,7 @@ def rep_base(n, l):
     output.pop(0)
     return output
 
-def fft(start, phases):
+def fft(start: list, phases: int) -> list:
     old = start.copy()
     for i in range(phases):
         new = []
@@ -43,7 +43,7 @@ def fft(start, phases):
         old = new.copy()
     return new
 
-def ffft(start, phases):
+def ffft(start: list, phases: int) -> list:
     start.reverse()
     old = start.copy()
     for i in range(phases):

@@ -1,21 +1,21 @@
-def outer(a, g):
+def outer(a: tuple, g: list) -> bool:
     if a[1] == 2 or a[1] == len(g[0]) - 4:
         return True
     if a[0] == 2 or a[0] == len(g) -3:
         return True
     return False
 
-def h(a, b):
+def h(a: tuple, b: tuple) -> int:
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) + abs(a[2] - b[2])
 
-def getmin(heap, fscore):
+def getmin(heap: set, fscore: dict) -> tuple:
     low = heap.pop()
     heap.add(low)
     for item in heap:
         if fscore.get(item, 1000) < fscore.get(low, 1000): low = item
     return low
 
-def rebuildpath(camefrom, target):
+def rebuildpath(camefrom: dict, target: tuple) -> list:
     path = [target]
     while target in camefrom.keys():
         target = camefrom[target]
@@ -23,7 +23,7 @@ def rebuildpath(camefrom, target):
     path.reverse()
     return path
 
-def astar(start, dest, g, adj, shenanigans):
+def astar(start: tuple, dest: tuple, g: list, adj: dict, shenanigans: bool) -> list:
     oset = set()
     cset = set()
     camefrom = dict()
@@ -36,7 +36,7 @@ def astar(start, dest, g, adj, shenanigans):
         return [dest]
     if g[start[0]][start[1]] != '.':
         #(start point is a wall)
-        return None
+        return []
     
     #to begin with, the only open point for exploration is the starting point
     oset.add(start)
