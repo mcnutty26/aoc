@@ -48,7 +48,7 @@ while True:
         since_sent += 1
     
     # Looks like we're in a loop
-    if since_sent > 5000:
+    if since_sent > 5000 and sent_to_brd:
         since_sent = 0
         devs[0].input_queue += NAT
         if NAT_Y == NAT[1]:

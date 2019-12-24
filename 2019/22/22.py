@@ -1,4 +1,4 @@
-# Load the suffling instructions
+# Load the shuffling instructions
 ins = []
 with open('input.txt', 'rt') as textfile:
     for line in textfile:
