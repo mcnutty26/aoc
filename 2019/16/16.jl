@@ -16,7 +16,7 @@ end
 
 function fft(array)
 	new = zeros(Int64, length(array))
-	for i in 1:length(array)
+	Threads.@threads for i in 1:length(array)
 		new[i] = abs(sum([pattern(i, j) * array[j] for j in 1:length(array)])) % 10
 	end
 	return new
