@@ -5,10 +5,7 @@ seats = fill(false, 128, 8)
 function p1()
 	idmax = 0
 	for line in input
-		pass = replace(line, "F"=>"0")
-		pass = replace(pass, "B"=>"1")
-		pass = replace(pass, "L"=>"0")
-		pass = replace(pass, "R"=>"1")
+		pass = reduce(replace, ["F"=>"0", "B"=>"1", "L"=>"0", "R"=>1], init=line)
 		vloc = parse(Int, pass[1:7], base=2)
 		hloc = parse(Int, pass[8:10], base=2)
 		global seats[vloc+1, hloc+1] = true
