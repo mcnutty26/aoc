@@ -1,6 +1,7 @@
 input = read(open("input.txt"), String)
 forms = split(input, "\n\n")
 
+# create a set of questions across each entire group and sum the size of the sets
 function p1()
 	count = []
 	for group in forms
@@ -10,6 +11,7 @@ function p1()
 	return sum(count)
 end
 
+# create a set for each person and intersect the sets from each group
 function p2()
 	count = []
 	for group in forms

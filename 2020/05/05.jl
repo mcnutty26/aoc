@@ -2,6 +2,7 @@ using DelimitedFiles
 input = readdlm("input.txt")
 seats = fill(false, 128, 8)
 
+# convert the seat number into binary and keep track of the highest
 function p1()
 	idmax = 0
 	for line in input
@@ -14,6 +15,7 @@ function p1()
 	return(idmax)
 end
 
+# search seats for the one empty seat where the seat in the row in front of it is taken
 function p2()
 	global seats
 	for i in 2:127
