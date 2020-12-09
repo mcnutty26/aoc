@@ -40,9 +40,9 @@ function p2()
 			if hgt == nothing
 				valid = false
 			elseif hgt.captures[1] == "cm"
-				valid &= 150 <= parse(Int, String(strip(hgt.match, ['c', 'm']))) <= 193
+				valid &= 150 ≤ parse(Int, String(strip(hgt.match, ['c', 'm']))) ≤ 193
 			elseif hgt.captures[1] == "in"
-				valid &= 59 <= parse(Int, String(strip(hgt.match, ['i', 'n']))) <= 76
+				valid &= 59 ≤ parse(Int, String(strip(hgt.match, ['i', 'n']))) ≤ 76
 			else
 				valid = false
 			end

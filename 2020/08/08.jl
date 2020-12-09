@@ -4,7 +4,7 @@ function run(program)
 	ac = 0
 	pc = 1
 
-	while program[pc] != ""
+	while program[pc] ≠ ""
 		# fetch the instruction
 		op = split(program[pc], ' ')[1]
 		value = parse(Int, split(program[pc], ' ')[2])

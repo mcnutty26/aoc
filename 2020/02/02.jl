@@ -17,7 +17,7 @@ for i in 1:Int(length(input)/3)
 			found += 1
 		end
 	end
-	if min <= found <= max
+	if min ≤ found ≤ max
 		global count1 += 1
 	end
 
