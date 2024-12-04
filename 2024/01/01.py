@@ -2,8 +2,7 @@ import sys
 
 listA = []
 listB = []
-diffs = 0
-similarity = 0
+totals = [0, 0]
 
 with open(sys.argv[1]) as puzzle:
     for line in puzzle:
@@ -15,8 +14,8 @@ listA.sort()
 listB.sort()
 
 for i in range(len(listA)):
-    diffs += abs(listA[i] - listB[i])
-    similarity += listA[i] * listB.count(listA[i])
+    totals[0] += abs(listA[i] - listB[i])
+    totals[1] += listA[i] * listB.count(listA[i])
 
-print(diffs, similarity)
+print(totals)
 

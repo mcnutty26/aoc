@@ -2,8 +2,7 @@ import sys
 from itertools import pairwise, combinations
 
 reports = []
-aCount = 0
-bCount = 0
+totals = [0, 0]
 
 with open(sys.argv[1]) as puzzle:
     for line in puzzle:
@@ -24,11 +23,11 @@ def safe(report):
 
 for report in reports:
     if safe(report):
-        aCount += 1
+        totals[0] += 1
     else:
         for subReport in combinations(report, len(report) - 1):
             if safe(subReport):
-                bCount += 1
+                totals[1] += 1
                 break
 
-print(aCount, aCount + bCount)
+print(totals[0], sum(totals))
